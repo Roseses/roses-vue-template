@@ -2,9 +2,11 @@ const { Configuration }  = require('webpack')
 const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader/dist/index');
-
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const { VueLoaderPlugin } = require('vue-loader/dist/index')
+const AutoImport = require('unplugin-auto-import/webpack')
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin")
 
 /**
  * @type {Configuration}
@@ -62,7 +64,13 @@ const config = {
         compilationSuccessInfo:{ //美化样式
             messages:['You application is running here http://localhost:9001']
         }       
-      })
+      }),      
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
     ],
     // externals: {
     //   vue: 'Vue'

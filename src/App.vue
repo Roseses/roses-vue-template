@@ -1,6 +1,6 @@
 <template>
    <div>
-      <button @click="change">按钮</button>
+      <el-button @click="change">按钮</el-button>
       {{state}}
       {{
         obj.bar
