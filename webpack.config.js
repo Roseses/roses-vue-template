@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const { Configuration }  = require('webpack')
 const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
@@ -7,12 +8,18 @@ const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin")
+const dotenv = require('dotenv')
+ env = dotenv.config().parsed
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next])
+  return prev
+}, {})
 
 /**
  * @type {Configuration}
- */1
+ */
 const config = {
-    mode: "development",
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     entry: "./src/main.ts",
     output: {
         filename: '[hash].js',
@@ -63,14 +70,15 @@ const config = {
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo:{ //美化样式
             messages:['You application is running here http://localhost:9001']
-        }       
-      }),      
+        }
+      }),
       AutoImport({
         resolvers: [ElementPlusResolver()],
       }),
       Components({
         resolvers: [ElementPlusResolver()],
       }),
+      new webpack.DefinePlugin(envKeys)
     ],
     // externals: {
     //   vue: 'Vue'

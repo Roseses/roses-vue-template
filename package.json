@@ -1,11 +1,11 @@
 {
   "name": "studyCli",
   "version": "1.0.0",
-  "description": "",
+  "description": "node -v 16.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "cross-env NODE_ENV=test webpack-dev-server",
     "build": "webpack"
   },
   "keywords": [],
@@ -31,6 +31,9 @@
     "webpack-dev-server": "^4.11.1"
   },
   "devDependencies": {
+    "@types/node": "^18.11.3",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "unplugin-auto-import": "^0.11.2",
     "unplugin-element-plus": "^0.4.1",
     "unplugin-vue-components": "^0.22.8"
