@@ -10,6 +10,7 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin")
 const dotenv = require('dotenv')
  env = dotenv.config().parsed
+// require('dotenv').config({ path: path.resolve(__dirname, './env/.env.' + process.env.NODE_ENV) })
 const envKeys = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next])
   return prev
@@ -27,6 +28,7 @@ const config = {
     },
     devServer: {
       port: 9001,
+      hot: true,
       proxy: {
 
       }
