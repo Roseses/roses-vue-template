@@ -27,7 +27,7 @@ onMounted(() => {
 #loader {
       border: 6px solid #f3f3f3;
       border-radius: 50%;
-      border-top: 12px solid #409eff;
+      border-top: 6px solid #409eff;
       width: 35px;
       height: 35px;
       animation: spin 1s linear infinite;
